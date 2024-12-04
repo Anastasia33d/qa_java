@@ -29,7 +29,7 @@ public class LionParamMockTest {
         lion = new Lion(sex, felineMock);
     }
 
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "Тестовые данные: {0}, {1}")
     public static Object[][] getLionsData() {
         return new Object[][] {
                 {"Самец", true},
@@ -39,6 +39,6 @@ public class LionParamMockTest {
 
     @Test
     public void doesHaveManeTest() {
-        assertEquals(hasMane, lion.doesHaveMane());
+        assertEquals("Метод doesHaveMane проверяет наличие гривы", hasMane, lion.doesHaveMane());
     }
 }

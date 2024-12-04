@@ -17,7 +17,7 @@ public class AnimalParamTest {
         this.animalsFood = animalsFood;
     }
 
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "Тестовые данные: {0}, {1}")
     public static Object[][] getAnimalsData() {
         return new Object[][]{
                 {"Травоядное", List.of("Трава", "Различные растения")},
@@ -28,7 +28,6 @@ public class AnimalParamTest {
     @Test
     public void getFoodTest() throws Exception {
         Animal animal = new Animal();
-        assertEquals(animalsFood, animal.getFood(animalKind));
+        assertEquals("Метод getFoodTest возвращает питание соответствующее виду животного", animalsFood, animal.getFood(animalKind));
     }
-
 }

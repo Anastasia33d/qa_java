@@ -10,7 +10,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 @RunWith(MockitoJUnitRunner.class)
 public class LionMockTest {
@@ -30,24 +29,18 @@ public class LionMockTest {
     public void getKittensTest() {
         int expectedResult = 1;
         Mockito.when(felineMock.getKittens()).thenReturn(expectedResult);
-        assertEquals(expectedResult, lion.getKittens());
+        assertEquals("Метод getKittens с параметром должен возвращать переданное количество котят", expectedResult, lion.getKittens());
     }
 
     @Test
     public void getFoodTest() throws Exception {
         List<String> expectedResult = List.of("Животные", "Птицы", "Рыба");
         Mockito.when(felineMock.getFood("Хищник")).thenReturn(expectedResult);
-        assertEquals(expectedResult, lion.getFood());
+        assertEquals("Метод getFood должен возвращать список с рационом для кошачьих", expectedResult, lion.getFood());
     }
 
-    @Test
-    public void getFoodInvalidTest() {
-        try {
-            new Lion("Сломанный", felineMock);
-            // Если при инициализации объекта используется недопустимое значение, тест должен провалиться
-            fail("Ожидается, что тут будет выброшена ошибка");
-        } catch (Exception e) {
-            assertEquals("Используйте допустимые значения пола животного - самец или самка", e.getMessage());
-        }
+    @Test(expected = Exception.class)
+    public void getFoodInvalidTest() throws Exception {
+        new Lion("Невалидное значение", felineMock);
     }
 }

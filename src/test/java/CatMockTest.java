@@ -26,14 +26,13 @@ public class CatMockTest {
 
     @Test
     public void getSoundTest() {
-        assertEquals("Мяу", cat.getSound());
+        assertEquals("Метод getSoundTest должен возвращать звук, который издает кошка", "Мяу", cat.getSound());
     }
 
     @Test
     public void getFoodTest() throws Exception {
         List<String> expectedResult = List.of("Животные", "Птицы", "Рыба");
         Mockito.when(felineMock.eatMeat()).thenReturn(expectedResult);
-        assertEquals(expectedResult, cat.getFood());
+        assertEquals("Метод getFoodTest должен возвращать список с рационом для кошачьих", expectedResult, cat.getFood());
     }
-
 }
